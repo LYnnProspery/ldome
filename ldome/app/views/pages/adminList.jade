@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+	.container
+		h1 电影管理列表
+		.row
+			table.table.table-hover
+				thead
+					tr
+						th 电影名称
+						th 导演/上传者
+						th 国家
+						th 时间
+						th 语言
+						th 录入时间
+						th 查看
+						th 更新
+						th 删除
+				tbody
+					each item in movies
+						tr(class="item-id-#{item.id}")
+							td #{item.name}
+							td #{item.doctor}
+							td #{item.country} 
+							td #{item.year}
+							td #{item.language}
+							td #{moment(item.meta.updateAt).format('YYYY-MMM-DD')}
+							td: a.btn.btn-info(href="/movie/#{item._id}", target="_blank") 查看
+							td: a.btn.btn-success(href="/admin/update/#{item._id}", target="_blank") 修改
+							td: button.btn.btn-danger.del(data-id="#{item._id}") 删除
+	script(src="/js/adminList.js")
+	
+	

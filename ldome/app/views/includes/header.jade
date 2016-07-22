@@ -1,0 +1,58 @@
+.container
+	.row(style="margin-bottom:70px;")
+		nav.navbar.navbar-inverse.navbar-fixed-top#navbar
+			.container
+				a.brand(style="text-decoration: none;") LDome
+				small &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gain your max
+				if user
+					a.btn.btn-default.btn-xs.pull-right#logout(href="/user/logout") logout
+					//- span.pull-right#username #{user.username}
+					span.pull-right#username
+						img.user-icon(height="50" width="50")
+				else
+					button.pull-right.nav-login-box#signupButton(data-toggle="modal" data-target="#signupModal") SignUp
+					button.pull-right.nav-login-box#loginButton(data-toggle="modal" data-target="#loginModal") Login
+				button.about About
+#signupModal.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header
+				button.close(data-dismiss="modal" type="button") &times;
+				h2 Sign Up
+			.modal-body
+				.form-group
+					label(for="signUpName") Username
+					input#signUpName.form-control(type="text" name="username")
+				.form-group
+					label(for="signUpName") Password
+					input#signUpPassword.form-control(type="password" name="password")
+			.modal-footer
+				button.btn.btn-success#signUpBtn() sign up and login
+				button.btn.btn-default(data-dismiss="modal" type="button") close
+#loginModal.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header 
+				button.close(data-dismiss="modal" type="button") &times;
+				h2 login
+			.modal-body
+				.form-group
+					label(for="loginName") Username
+					input#loginName.form-control(type="text" name="username")
+				.form-group
+					label(for="loginName") Password
+					input#loginPassword.form-control(type="password" name="password")
+			.modal-footer
+				button.btn.btn-success#loginBtn(type="button") login
+				button.btn.btn-default(data-dismiss="modal" type="button") close
+#aboutModal.modal.fade
+	.modal-dialog
+		.modal-content
+			.modal-header
+				button.close(data-dismiss="modal" type="button") &times;
+				|关于
+			.modal-body
+				|ldome是lynn个人独自完成的视频小站，因为lynn没有资源来源，所以本着‘我们不制作视频，我们只是b站视频的搬运工’的想法，分享并使用了来源于bilibibli的视频资源。人新手疏，由于小站的前后端以及设计都是个人完成，难免存在Bug，欢迎大家建议指正。大家可以直接联系lynn。lynnprosper@163.com
+			.modal-footer
+				button.btn.btn-default(data-dismiss="modal" type="button") close
+script(src="/js/userAction.js")

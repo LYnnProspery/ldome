@@ -1,0 +1,66 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.col-md-7
+				embed(src="#{movie.flash}", allowFullScreen="true", quality="high", width="720", height="600", align="middle", 
+					type="application/x-shockwave-flash")
+			.col-md-5
+				dl.dl-horizontal
+					dt 名字	
+					dd #{movie.name}
+					dt 导演/上传者
+					dd #{movie.doctor}
+					dt 国家
+					dd #{movie.country}
+					dt 语言
+					dd #{movie.language}
+					dt 时间 
+					dd #{movie.year}
+					dt 简介
+					dd #{movie.detail}
+		.row
+			hr.comment-divider
+			.col-md-7.comment-box
+				h4 #{comments.length}条评论:
+				hr#showNumberDivider
+				each comment, index in comments
+					.media
+						a.media-left
+							img.media-object.user-icon(width="50" height="50")
+						.media-body
+							p.media-heading #{comment.from.username} 
+							| #{comment.content}
+							a.pull-right.reply(reply-base="#{comment._id}" reply-to="#{comment.from._id}") 回复
+							each reply in comment.reply 
+								.media
+									a.media-left
+										img.media-object.user-icon(width="50" height="50")
+									.media-body
+										p.media-heading #{reply.from.username} 
+											span(style="color: rgb(41,100,168)") 回复 
+											|#{reply.to.username} :
+										|#{reply.content}
+										a.pull-right.reply(reply-base="#{comment._id}" reply-to="#{reply.to._id}") 回复
+										small.pull-right #{moment(reply.updateAt).format('YYYY-MMM-DD HH:mm')}
+					p#position ##{comments.length - index}&nbsp;&nbsp;&nbsp;&nbsp;#{moment(comment.meta.updateAt).format('YYYY-MMM-DD HH:mm')}
+
+					hr
+				#commentArea		
+					form
+						input#hiddenMovieInfo(type="hidden" name="theMovie" value="#{movie._id}")
+						if user
+							input#hiddenUserId(type="hidden" name="theUser" value="#{user._id}")
+						textarea.form-control(rows="4" placeholder="input your comment~" name="comment")
+					if user
+						button.btn.btn-success.submit-comment Submit
+					else 
+						button.btn.btn-default.submit-comment(data-toggle="modal" data-target="#loginModal") 登陆后评论
+	.footer
+		h2 LDome
+		p PoweredBy Lynn
+		a contact me
+	script(src="/frames/jquery.scrollTo.min.js")
+	script(src="/js/commentController.js")
+		

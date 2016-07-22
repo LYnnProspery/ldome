@@ -1,0 +1,46 @@
+extends ../layout
+
+block content
+	.search-wrap
+		if (listIndex === 4)
+			img(src="/film.jpg" width="130%")
+		else if (listIndex === 6)
+			img(src="/guichu.jpg" width="130%")
+		else
+			img(src="/b-bg.png" width="130%")
+		.container.search
+			input.videolist-search#search(type="text" placeholder="想要看点什么呀")
+			span.glyphicon.glyphicon-search.glyphicon-search-videolist
+	.container
+		.row.navigation-box(style="margin-left:100px;margin-right:100px")
+			ul
+				a.link-to-movielist(href="/")
+					li 首页
+						span.glyphicon.glyphicon-home(style="color: rgba(255,105,180,0.9)")
+				each category in categories
+					a.link-to-movielist(href="/movie/videolist/#{category.name}") 
+						li
+							|#{category.name}
+							span.badge.category-badges
+								|#{category.movies.length}
+		.row
+			.panel.panel-default
+				span.videolist-icon
+					img.category-icons(src=icons[listIndex] width="70")
+					h3(style="display: inline-block") #{categories[listIndex].name}
+				.panel-body
+					each item in categories[listIndex].movies
+						.col-md-3.video-box
+							.thumbnail
+								a(href="/movie/#{item._id}")
+									.videos-wrap
+										p.video-content #{item.detail.substr(0, 40)}...
+											span.glyphicon.glyphicon-play-circle.play-icon
+											span.watched 播放次数: #{item.watched}
+									img.poster(src="#{item.poster}" alt="#{item.name}" style="width:320px;height:150px;background:#000")
+								.caption
+									p #{item.name}
+	.footer
+		h2 LDome
+		p PoweredBy Lynn
+		a contact me

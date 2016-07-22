@@ -1,0 +1,63 @@
+extends ../layout
+
+block content
+	.container(style="color: #000")
+		.row.well
+			form.form-horizontal(method="post", action="/admin/movie/new")
+				if movie._id
+					input(type="hidden", name="_id", value=movie._id)
+				if movie.category 
+					span#hasCategory(data-category="#{movie.category }")
+				.form-group
+					.row
+						label.control-label.col-md-2(for="inputName") 视频名称
+						.col-md-8
+							input#inputName.form-control(type="text", name="name", value=movie.name)
+				.form-group
+					.row
+						label.control-label.col-md-2(for="inputName") 分类
+						.col-md-8
+							each category in categories
+								label.radio-inline
+									input(type='radio' name="category" value=category._id)
+									|#{category.name}
+				.form-group
+					.row
+						label.control-label.col-md-2(for="inputDoctor") 导演
+						.col-md-8
+							input#inputDoctor.form-control(type="text", name="doctor", value=movie.doctor)
+				.form-group
+					.row
+						label.control-label.col-md-2(for="inputCountry") 国家
+						.col-md-8
+							input#inputCountry.form-control(type="text", name="country", value=movie.country)
+				.form-group
+					.row
+						label.control-label.col-md-2(for="inputLanguage") 语言
+						.col-md-8
+							input#inputLanguage.form-control(type="text", name="language", value=movie.language)
+				.form-group
+					.row
+						label.control-label.col-md-2(for="inputYear") 时间
+						.col-md-8
+							input#inputYear.form-control(type="text", name="year", value=movie.year)
+				.form-group
+					.row
+						label.control-label.col-md-2(for="inputDetail") 简介
+						.col-md-8
+							textarea#inputDetail.form-control(type="text", name="detail" rows="5") #{movie.detail}
+				.form-group
+					.row
+						label.control-label.col-md-2(for="inputFlash") 片源
+						.col-md-8
+							input#inputFlash.form-control(type="text", name="flash", value=movie.flash)
+				.form-group
+					.row
+						label.control-label.col-md-2(for="inputPoster") 海报
+						.col-md-8
+							input#inputPoster.form-control(type="text", name="poster", value=movie.poster)
+				.form-group
+					.col-md-2
+					.col-md-8
+						button.btn.btn-default(type="submit") 提交
+	script(src="/js/categoryController.js")

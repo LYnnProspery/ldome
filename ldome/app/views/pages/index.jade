@@ -1,0 +1,58 @@
+extends ../layout
+
+block content
+	.search-wrap
+		img#backToTop(src="/navWrap.png" width="100%")
+		.container.search
+			input.form-control(type="text" placeholder="想要看点什么呀")
+			span.glyphicon.glyphicon-search
+	.container.index-container
+		.row.navigation-box(style="margin-left:100px;margin-right:100px")
+			ul
+				a.link-to-movielist(href="/")
+					li 首页
+						span.glyphicon.glyphicon-home(style="color: rgba(255,105,180,0.9)")
+				each category in categories
+					a.link-to-movielist(href="/movie/videolist/#{category.name}")                 
+						li
+							|#{category.name}
+							span.badge.category-badges
+								|#{category.movies.length}
+		.row
+			each category, index in categories
+				.panel.panel-default(id = 'list' + index)
+					span
+						img.category-icons(src=icons[index] width="50")
+						a.pull-right.more-info(href="/movie/videolist/#{category.name}") 更多 
+						h3(style="display: inline-block") #{category.name}
+					.panel-body
+						each item in category.movies.slice(0, 8)
+							.col-md-3.video-box
+								.thumbnail
+									a(href="/movie/#{item._id}")
+										.videos-wrap
+											p.video-content #{item.detail.substr(0, 40)}...
+												span.glyphicon.glyphicon-play-circle.play-icon
+												span.upper UP主:#{item.doctor}
+												span.watched 播放次数: #{item.watched}
+										img.poster(src="#{item.poster}" alt="#{item.name}" style="width:320px;height:150px;background:#000")
+									.caption
+										p #{item.name}
+	.side-nav
+		ul
+			each category, index in categories
+				if index === 0 
+					a
+						li.side-nav-item.side-active(style="border-radius: 5px 5px 0 0") #{category.name}
+				else
+					a
+						li.side-nav-item #{category.name}
+			a
+				li.side-nav-item(style="border-radius: 0 0 5px 5px")
+					span.glyphicon.glyphicon-menu-up
+	.footer
+		h2 LDome
+		p PoweredBy Lynn
+		a contact me
+	script(src="/frames/jquery.scrollTo.min.js")
+	script(src="/js/index-scroll.js")
