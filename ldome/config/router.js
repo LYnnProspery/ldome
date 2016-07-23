@@ -36,7 +36,9 @@ module.exports = function(app) {
 
 	app.get('/admin/userlist', User.loginRequired, User.adminRequired, User.adminGetUserList);
 
-	app.get('/movie/videolist/:category', Movies.getAllMovieOfCategory);
+	app.get('/movie/videolist/list', Movies.getAllMovieOfCategory);
+
+	app.get('/movie/search/result', Movies.getSearch);
 
 	//app.get('/movie/:category', )
 };

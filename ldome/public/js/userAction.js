@@ -76,4 +76,7 @@ $(function() {
 		$('#aboutModal').modal();
 	});
 
+	$('.brand').on('click', function() {
+		window.open('/');
+	});
 });

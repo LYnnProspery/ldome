@@ -3,10 +3,19 @@ extends ../layout
 block content
 	.search-wrap
 		if (listIndex === 4)
+			.nav-container(style="background-image: url('/film.jpg');")
 			img(src="/film.jpg" width="130%")
 		else if (listIndex === 6)
+			.nav-container(style="background-image: url('/guichu.jpg');")
 			img(src="/guichu.jpg" width="130%")
+		else if (listIndex === 2)
+			.nav-container(style="background-image: url('/bg1.png');")
+			img(src="/bg1.png" width="130%")		
+		else if (listIndex === 0 || listIndex === 5)
+			.nav-container(style="background-image: url('/bg.png');background-size:100%;background-position: center -50px;")
+			img(src="/bg.png" width="100%" style="margin-top: -50px")
 		else
+			.nav-container(style="background-image: url('/b-bg.png');")
 			img(src="/b-bg.png" width="130%")
 		.container.search
 			input.videolist-search#search(type="text" placeholder="想要看点什么呀")
@@ -18,7 +27,7 @@ block content
 					li 首页
 						span.glyphicon.glyphicon-home(style="color: rgba(255,105,180,0.9)")
 				each category in categories
-					a.link-to-movielist(href="/movie/videolist/#{category.name}") 
+					a.link-to-movielist(href="/movie/videolist/list?category=#{category.name}&page=1") 
 						li
 							|#{category.name}
 							span.badge.category-badges
@@ -29,7 +38,7 @@ block content
 					img.category-icons(src=icons[listIndex] width="70")
 					h3(style="display: inline-block") #{categories[listIndex].name}
 				.panel-body
-					each item in categories[listIndex].movies
+					each item in categories[listIndex].movies.slice((currentPage - 1) * limit, currentPage * limit)
 						.col-md-3.video-box
 							.thumbnail
 								a(href="/movie/#{item._id}")
@@ -40,7 +49,25 @@ block content
 									img.poster(src="#{item.poster}" alt="#{item.name}" style="width:320px;height:150px;background:#000")
 								.caption
 									p #{item.name}
+			.btn-toolbar.page-control-group
+				if currentPage != 1
+					.btn-group
+						a(href="/movie/videolist/list?category=#{categories[listIndex].name}&page=#{parseInt(currentPage) - 1}")
+							li.btn.prePage.page-li 上一页
+				.btn-group
+					-for(var i = 0; i < pageCount; i++)
+						if i  === (currentPage - 1)
+							a(href="/movie/videolist/list?category=#{categories[listIndex].name}&page=#{i + 1}")
+								li.btn.page-btn.page-li.page-active #{i + 1}
+						else 
+							a(href="/movie/videolist/list?category=#{categories[listIndex].name}&page=#{i + 1}")
+								li.btn.page-btn.page-li #{i + 1}
+				if currentPage != pageCount
+					.btn-group
+						a(href="/movie/videolist/list?category=#{categories[listIndex].name}&page=#{parseInt(currentPage) + 1}")
+							li.btn.nextPage.page-li 下一页
 	.footer
-		h2 LDome
+		h2 YouDome
 		p PoweredBy Lynn
-		a contact me
+		a.contact-link contact me
+	script(src="/js/search-controller.js")

@@ -19,10 +19,11 @@ exports.getIndex =  function(req, res) {
 				console.log(err);
 			}
 			res.render('index', {
-				title: 'LDome',
+				title: 'YouDome',
 				categories: categories,
 				icons: iconSrcs,
 				//numbers: aResultNum
+				random: Math.floor(Math.random() * 10) + 1
 			});
 		});
 		// .fetchAll(function(err, categories){

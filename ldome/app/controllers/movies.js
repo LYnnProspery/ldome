@@ -177,10 +177,14 @@ exports.adminGetMoviesList =  function (req, res){
 
 
 exports.getAllMovieOfCategory = function(req, res) {
-	var theCategory = req.params.category;
+	var theCategory = req.query.category;
+	var page = req.query.page;
 	var listIndex = 0;
 	//console.log(theCategory);
 	//res.send(theCategory);
+	//console.log(page + theCategory);
+	var pageLimit = 16;
+	var pageCount = 0;
 	Category
 		.find({}) 
 		.populate({path: 'movies'})
@@ -194,19 +198,48 @@ exports.getAllMovieOfCategory = function(req, res) {
 					listIndex = index;
 				}
 			});
-			console.log(listIndex);
+
+			pageCount = Math.ceil(categories[listIndex].movies.length / pageLimit);
 
 			res.render('allMovieList', {
-				title: 'LDome',
+				title: 'YouDome',
 				categories: categories,
 				icons: iconSrcs,
-				listIndex: listIndex
+				listIndex: listIndex,
+				currentPage: page,
+				limit: pageLimit,
+				pageCount: pageCount
 			});
 		});	
 };
 
+exports.getSearch = function(req, res) {
+	var keyword = req.query.keyword;
+	var page = req.query.page;
+	var reg = new RegExp('.*' + keyword + '.*', 'i');
+
+	var pageLimit = 16;
+	var pageCount = 0;
 
 
+	Movie
+		.find({name: reg})
+		.exec(function(err, movies) {
+			if (err) {
+				console.log(err);
+			}
+
+			pageCount = Math.ceil(movies.length / pageLimit);
+			res.render('search', {
+				title: 'YouDome Search',
+				keyword: keyword,
+				result: movies,
+				currentPage: page,
+				limit: pageLimit,
+				pageCount: pageCount
+			});
+		});
+};
 
 
 

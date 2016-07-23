@@ -1,0 +1,53 @@
+extends ../layout
+
+block content
+	.search-wrap
+		.nav-container(style="background-image: url('/b-bg.png');")
+		img(src="/b-bg.png" width="130%")
+		.container.search
+			input.videolist-search#search(type="text" placeholder="想要看点什么呀")
+			span.glyphicon.glyphicon-search.glyphicon-search-videolist
+	.container
+		.row
+			.panel.panel-default
+					h3.search-title "#{keyword}" 相关数据:
+					p 共#{result.length}条数据
+				.panel-body
+					if result.length === 0
+						.no-result(style="text-align: center")
+							h3 无相关数据
+							img(src="/noresult.png" width="400" style="margin-top: 30px;")
+					each item in result.slice((currentPage - 1) * limit, currentPage * limit)
+						.col-md-3.video-box
+							.thumbnail
+								a(href="/movie/#{item._id}")
+									.videos-wrap
+										p.video-content #{item.detail.substr(0, 40)}...
+											span.glyphicon.glyphicon-play-circle.play-icon
+											span.watched 播放次数: #{item.watched}
+									img.poster(src="#{item.poster}" alt="#{item.name}" style="width:320px;height:150px;background:#000")
+								.caption
+									p #{item.name}
+			if (result.length !== 0)									
+				.btn-toolbar.page-control-group
+					if currentPage != 1
+						.btn-group
+							a(href="/movie/search/result?keyword=#{keyword}&page=#{parseInt(currentPage) - 1}")
+								li.btn.prePage.page-li 上一页
+					.btn-group
+						-for(var i = 0; i < pageCount; i++)
+							if i  === (currentPage - 1)
+								a(href="/movie/search/result?keyword=#{keyword}&page=#{i + 1}")
+									li.btn.page-btn.page-li.page-active #{i + 1}
+							else 
+								a(href="/movie/search/result?keyword=#{keyword}&page=#{i + 1}")
+									li.btn.page-btn.page-li #{i + 1}
+					if currentPage != pageCount
+						.btn-group
+							a(href="/movie/search/result?keyword=#{keyword}&page=#{parseInt(currentPage) + 1}")
+								li.btn.nextPage.page-li 下一页
+	.footer
+		h2 YouDome
+		p PoweredBy Lynn
+		a.contact-link contact me
+	script(src="/js/search-controller.js")
