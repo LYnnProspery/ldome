@@ -1,13 +1,13 @@
 var Movie = require('../models/movie-model');
 var Category = require('../models/category-model');
 var iconSrcs = [
-	'/b-icon/b-animation.png', 
-	'/b-icon/b-game.png',
-	'/b-icon/b-music.png',
-	'/b-icon/b-amusement.png',
-	'/b-icon/b-movie.png',
-	'/b-icon/b-digital.png',
-	'/b-icon/b-guichu.png'
+	'http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-icon/b-animation.png', 
+	'http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-icon/b-game.png',
+	'http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-icon/b-music.png',
+	'http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-icon/b-amusement.png',
+	'http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-icon/b-movie.png',
+	'http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-icon/b-digital.png',
+	'http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-icon/b-guichu.png'
 ];
 exports.getIndex =  function(req, res) {
 	Category

@@ -2,8 +2,8 @@ extends ../layout
 
 block content
 	.search-wrap
-		.nav-container(style="background-image: url('/b-bg.png');z-index:10;background-size: 130%")
-		img#backToTop(src="/b-bg.png" width="130%")
+		.nav-container(style="background-image: url('http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-bg.png');z-index:10;background-size: 130%")
+		img#backToTop(src="http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-bg.png" width="130%")
 		.container.search
 			input.videolist-search#search(type="text" placeholder="想要看点什么呀")
 			span.glyphicon.glyphicon-search.glyphicon-search-videolist
@@ -40,7 +40,7 @@ block content
 									.caption
 										p #{item.name}
 	.side-nav
-		img(src="/b-gif" + random + ".gif" width="50")
+		img(src="http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-gif" + random + ".gif" width="50")
 		ul
 			each category, index in categories
 				if index === 0 

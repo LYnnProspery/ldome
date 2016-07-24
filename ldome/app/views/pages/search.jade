@@ -2,8 +2,8 @@ extends ../layout
 
 block content
 	.search-wrap
-		.nav-container(style="background-image: url('/b-bg.png');")
-		img(src="/b-bg.png" width="130%")
+		.nav-container(style="background-image: url('http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-bg.png');")
+		img(src="http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-bg.png" width="130%")
 		.container.search
 			input.videolist-search#search(type="text" placeholder="想要看点什么呀")
 			span.glyphicon.glyphicon-search.glyphicon-search-videolist
@@ -16,7 +16,7 @@ block content
 					if result.length === 0
 						.no-result(style="text-align: center")
 							h3 无相关数据
-							img(src="/noresult.png" width="400" style="margin-top: 30px;")
+							img(src="http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/noresult.png" width="400" style="margin-top: 30px;")
 					each item in result.slice((currentPage - 1) * limit, currentPage * limit)
 						.col-md-3.video-box
 							.thumbnail
