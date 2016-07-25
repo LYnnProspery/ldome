@@ -53,20 +53,39 @@ nav button:hover {
 	box-shadow: 2px 2px 2px #ccc;
 }
 
-nav #signupButton {
-	background: rgba(237,237,237,0.67);
-	color: #000;
-}
-
-nav #loginButton {
-	background:rgba(255,50,3,0.67);
-	border: none;
-}
-
 nav #logout {
 	margin-top: 15px;
 	margin-left: 10px;
 	width: 100px;
+}
+
+.nav-login-box {
+	line-height: 58px;
+	text-align: center;
+	width: 50px;
+	height: 58px;
+	color: #000;
+	font-size: 17px;
+	cursor: pointer;
+	text-decoration: none;
+	margin: 0 5px;
+	border-radius: 9px;
+	transition: all .4s ease;
+}
+.nav-login-box:hover {
+	text-decoration: none;
+	background: rgb(234,65,122);
+	color: #fff;
+}
+
+.about-bg {
+	height: 50px;
+	width: 60px;
+}
+.line-divider {
+	margin-top: 18px;
+	border-right: 1px solid;
+	height: 20px;
 }
 nav small {
 	display: inline-block;
@@ -151,11 +170,19 @@ hr {
 	background: none;
 	border: none;
 }
-.search-wrap img {
+/*.search-wrap img {
 	position: absolute;
 	display: block;
 	top: 0;
+}*/
+
+.nav-img {
+	position: absolute;
+	top: 0;
+	height: 170px;
+	width: 100%;
 }
+
 .search-wrap .search {
 	margin-top: 50px;
 	position: relative;
@@ -279,25 +306,23 @@ hr {
 }
 
 .about {
-	width: 60px;
-	height: 70px;
 	position: absolute;
-	background: rgb(234,65,122);
-	border-radius: 0 0 5px 5px;
 	top: -15px;
-	right: 50px;
+	right: 0;
+	width: 60px;
+	height: 65px;
+	background: rgb(234,65,122);
+	border-radius: 0 0 9px 9px;
 	transition: all .3s;
 }
 
 .about:hover {
+	height: 75px;
 	border-radius: 0;
-	height: 90px;
 	box-shadow: none;
 }
 
-.index-container {
-	margin-left: 5%;
-}
+
 
 .videolist-icon {
 	margin-left: 45%;
@@ -326,12 +351,28 @@ hr {
 }
 
 
+/*大于1200 1170
+大于992 970*/
+
+
+
+
 .side-nav {
 	position: fixed;
-	right: 10%;
+	/*right: 10%;*/
+	left: 50%;
+	margin-left: 585px;
 	top: 35%;
 	border-radius: 5px;
 }
+
+@media screen and (max-width:1280px){
+	.side-nav {
+		right: 0;
+		left: auto;
+	}
+} 
+
 .side-nav ul {
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -381,9 +422,16 @@ hr {
 	filter: blur(5px);
 	background-size: 130%;
 	z-index: 10;
+	background-position: center -10px;
+	background-repeat: no-repeat;
+	background-size:1920px 170px;
+
 }
 
-
+.nav-img {
+	background-position: center; 
+	background-repeat: no-repeat;
+}
 .page-control-group {
 	margin-left: 30px;
 }

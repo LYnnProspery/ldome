@@ -62,13 +62,15 @@ $(function() {
 		//console.log('11');
 		//console.log($(window).scrollTop())
 		var top = $(window).scrollTop();
-		var boxHeight = $('.search-wrap img').height() - 50;
+		var boxHeight = 170;
 		if(top >= boxHeight) {
 			$('nav').addClass('scroll');
 			$('.brand').addClass('brand-scroll');
+			$('.nav-login-box').addClass('brand-scroll');
 		} else {
 			$('nav').removeClass('scroll');
 			$('.brand').removeClass('brand-scroll');
+			$('.nav-login-box').removeClass('brand-scroll');
 		}
 	});
 

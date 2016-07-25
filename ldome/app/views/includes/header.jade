@@ -1,18 +1,22 @@
 .container
 	.row(style="margin-bottom:70px;")
 		nav.navbar.navbar-inverse.navbar-fixed-top#navbar
-			.container
+			.container(style="position: relative")
 				a.brand(style="text-decoration: none;") YouDome
 				small &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gain your max
+				button.about About
 				if user
 					a.btn.btn-default.btn-xs.pull-right#logout(href="/user/logout") logout
 					//- span.pull-right#username #{user.username}
 					span.pull-right#username
 						img.user-icon(height="50" width="50")
 				else
-					button.pull-right.nav-login-box#signupButton(data-toggle="modal" data-target="#signupModal") SignUp
-					button.pull-right.nav-login-box#loginButton(data-toggle="modal" data-target="#loginModal") Login
-				button.about About
+					//- button.pull-right.nav-login-box#signupButton(data-toggle="modal" data-target="#signupModal") SignUp
+					//- button.pull-right.nav-login-box#loginButton(data-toggle="modal" data-target="#loginModal") Login
+					span.about-bg.pull-right
+					a.pull-right.nav-login-box#signupButton(data-toggle="modal" data-target="#signupModal") 注册
+					span.pull-right.line-divider
+					a.pull-right.nav-login-box#loginButton(data-toggle="modal" data-target="#loginModal") 登陆
 #signupModal.modal.fade
 	.modal-dialog
 		.modal-content
