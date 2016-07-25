@@ -53,12 +53,6 @@ nav button:hover {
 	box-shadow: 2px 2px 2px #ccc;
 }
 
-nav #logout {
-	margin-top: 15px;
-	margin-left: 10px;
-	width: 100px;
-}
-
 .nav-login-box {
 	line-height: 58px;
 	text-align: center;
