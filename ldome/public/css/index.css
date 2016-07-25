@@ -416,7 +416,7 @@ hr {
 	filter: blur(5px);
 	background-size: 130%;
 	z-index: 10;
-	background-position: center -10px;
+	background-position: center -5px;
 	background-repeat: no-repeat;
 	background-size:1920px 170px;
 
