@@ -3,7 +3,7 @@ extends ../layout
 block content
 	.search-wrap
 		.nav-container(style="background-image: url('http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-bg.png');")
-		img(src="http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-bg.png" width="130%")
+		.nav-img#backToTop(style="background-image: url('http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-bg.png')")
 		.container.search
 			input.videolist-search#search(type="text" placeholder="想要看点什么呀")
 			span.glyphicon.glyphicon-search.glyphicon-search-videolist
@@ -20,7 +20,7 @@ block content
 					each item in result.slice((currentPage - 1) * limit, currentPage * limit)
 						.col-md-3.video-box
 							.thumbnail
-								a(href="/movie/#{item._id}")
+								a(href="/movie/#{item._id}" target='_blank')
 									.videos-wrap
 										p.video-content #{item.detail.substr(0, 40)}...
 											span.glyphicon.glyphicon-play-circle.play-icon

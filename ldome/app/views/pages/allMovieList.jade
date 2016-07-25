@@ -46,7 +46,7 @@ block content
 					each item in categories[listIndex].movies.slice((currentPage - 1) * limit, currentPage * limit)
 						.col-md-3.video-box
 							.thumbnail
-								a(href="/movie/#{item._id}")
+								a(href="/movie/#{item._id}" target='_blank')
 									.videos-wrap
 										p.video-content #{item.detail.substr(0, 40)}...
 											span.glyphicon.glyphicon-play-circle.play-icon
