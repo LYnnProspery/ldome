@@ -468,13 +468,26 @@ hr {
 	margin-top: 50px;
 }
 
+::-webkit-input-placeholder { 
+    color: rgb(100,100,100);
+}
+:-moz-placeholder { 
+ 	color: rgb(100,100,100);
+
+}
+::-moz-placeholder { 
+ 	color: rgb(100,100,100);
+}
+:-ms-input-placeholder { 
+	color: rgb(100,100,100);
+}
 
 /*#search {
 	height: 35px;
 	border-radius: 6px;
 	line-height: 30px;
 	background: rgba(255,255,255,0.8);
-}*/
+}
 /*::-webkit-input-placeholder { 
     color:    #909;
 }
