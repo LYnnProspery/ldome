@@ -5,18 +5,19 @@
   "main": "app.js",
   "dependencies": {
     "bcrypt": "^0.8.7",
-    "express-session": "^1.13.0",
     "body-parser": "^1.15.2",
     "connect-mongo": "^1.2.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
-    "moment": "^2.13.0",
+    "express-session": "^1.13.0",
     "grunt": "^1.0.1",
-    "grunt-nodemon": "^0.4.2",
-    "mongoose": "^4.5.2",
-    "underscore": "^1.8.3",
+    "grunt-concurrent": "^2.3.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-nodemon": "^0.4.2",
     "jade": "^1.11.0",
-    "grunt-concurrent": "^2.3.0"
+    "moment": "^2.13.0",
+    "mongoose": "^4.5.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {},
   "scripts": {

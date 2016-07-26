@@ -3,14 +3,23 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
+var cookieParser = require('cookie-parser');
 var mongoStore = require('connect-mongo')(expressSession);
 
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 4000;
 var dbUrl = 'mongodb://localhost/theater';
 var path = require('path');
 
 mongoose.connect(dbUrl);
+
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', './app/views/pages');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.set('view engine', 'jade');
 
 app.use(expressSession({
 	secret: 'lynn',
@@ -20,11 +29,7 @@ app.use(expressSession({
 	})
 }));
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.set('views', './app/views/pages');
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.set('view engine', 'jade');
+
 app.listen(port, function() {
 	console.log('listening on ' + port);
 });
