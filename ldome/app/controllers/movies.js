@@ -26,8 +26,8 @@ exports.getMovie =	function(req, res) {
 			});
 			Comment
 				.find({theMovie: movie._id})
-				.populate('from', 'username')
-				.populate('reply.to reply.from', 'username')
+				.populate('from', 'username icon')
+				.populate('reply.to reply.from', 'username icon')
 				.exec(function(err, comments) {
 					if(err) {
 						console.log('fetch comment err: ' + err);

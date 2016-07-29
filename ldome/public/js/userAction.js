@@ -81,4 +81,80 @@ $(function() {
 	$('.brand').on('click', function() {
 		window.open('/');
 	});
+
+	var timer = null;
+	var oUserBox = $('.user-info');
+	$('#username').on('mouseenter', function() {
+		clearTimeout(timer);
+		//oUserBox.css('display', 'block');
+
+		oUserBox.addClass('user-active');
+		//$('.user-info').addClass('user-active');
+	});
+
+	$('#username').on('mouseleave', function() {
+		timer = setTimeout(function() {
+			oUserBox.removeClass('user-active');
+			// setTimeout(function() {
+			// 	oUserBox.css('display', 'none');
+			// });
+		}, 300);
+	});
+
+	$('.user-info-box').on('mouseenter', function() {
+		clearTimeout(timer);
+		//$('.user-info').addClass('user-active');
+		oUserBox.addClass('user-active');
+	});
+
+	$('.user-info-box').on('mouseleave', function() {
+			oUserBox.removeClass('user-active');
+	});
+
+	$('#userBoxLogout').on('click', function() {
+		window.open('/user/logout', '_self');
+	});
+
+	$('#userSelf').on('click', function(event) {
+		var id = $(this).attr('user-id');
+		window.open('/userinfo/' + id);
+	});
+
+	$('#backToIndex').on('click', function() {
+		window.open('/', '_self');
+	});
+
+	$('#hideInput').on('change', function() {
+		var files = this.files[0];
+		var fr = new FileReader();
+		fr.onload = function(event) {
+			var src = event.target.result;
+			console.log(src);
+			$.ajax({
+				type: 'POST',
+				data: {
+					imgdata: src
+				},
+				url: '/user/upload',
+				success: function(res) {
+					if(res.state === 1) {
+						alert('更换头像成功！');
+						location.reload();
+					} else {
+						alert('上传失败，请稍后再试');
+					}
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
+			
+		};
+		fr.readAsDataURL(files);
+	});
+
+	$('#setUserIcon').on('click', function() {
+		$('#hideInput').click();
+	});
+
 });

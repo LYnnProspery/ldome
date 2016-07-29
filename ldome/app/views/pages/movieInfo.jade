@@ -28,7 +28,7 @@ block content
 				each comment, index in comments
 					.media
 						a.media-left
-							img.media-object.user-icon(width="50" height="50")
+							img.media-object.user-icon(width="50" height="50" src="#{comment.from.icon}")
 						.media-body
 							p.media-heading #{comment.from.username} 
 							| #{comment.content}
@@ -36,7 +36,7 @@ block content
 							each reply in comment.reply 
 								.media
 									a.media-left
-										img.media-object.user-icon(width="50" height="50")
+										img.media-object.user-icon(width="50" height="50" src="#{reply.from.icon}")
 									.media-body
 										p.media-heading #{reply.from.username} 
 											span(style="color: rgb(41,100,168)") 回复 
@@ -45,7 +45,6 @@ block content
 										a.pull-right.reply(reply-base="#{comment._id}" reply-to="#{reply.to._id}") 回复
 										small.pull-right #{moment(reply.updateAt).format('YYYY-MMM-DD HH:mm')}
 					p#position ##{comments.length - index}&nbsp;&nbsp;&nbsp;&nbsp;#{moment(comment.meta.updateAt).format('YYYY-MMM-DD HH:mm')}
-
 					hr
 				#commentArea		
 					form
@@ -59,7 +58,7 @@ block content
 						button.btn.btn-default.submit-comment(data-toggle="modal" data-target="#loginModal") 登陆后评论
 	.footer
 		h2 YouDome
-		p PoweredBy Lynn
+		p Powered by Lynn
 		a contact me
 	script(src="/frames/jquery.scrollTo.min.js")
 	script(src="/js/commentController.js")

@@ -9,7 +9,7 @@ var Category = require('../app/controllers/category');
 module.exports = function(app) {
 	app.use(function(req, res, next) {
 		var _user = req.session.user;
-		console.log(_user.name + 'in session');
+		//console.log(_user.name + 'in session');
 		if(_user) {
 			app.locals.user = _user;
 		} else {
@@ -41,8 +41,11 @@ module.exports = function(app) {
 
 	app.get('/movie/videolist/list', Movies.getAllMovieOfCategory);
 
-	app.get('/movie/search/result', Movies.getSearch)
+	app.get('/movie/search/result', Movies.getSearch);
 
+	app.get('/userinfo/:id', User.loginRequired, User.getUserInfo);
+
+	app.post('/user/upload', User.loginRequired, User.uploadIcon(app));
 	//app.get('/movie/:category', )
 };
 	// app.get('/', function {

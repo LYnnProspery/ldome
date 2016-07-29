@@ -10,6 +10,8 @@ var iconSrcs = [
 	'http://7xwgqm.com1.z0.glb.clouddn.com/youdome/img/b-icon/b-guichu.png'
 ];
 exports.getIndex =  function(req, res) {
+	console.log('user in session');
+	console.log(req.session.user);
 	Category
 		.find({}) 
 		//.populate({path: 'movies', options: {limit: 8}})

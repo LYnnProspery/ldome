@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+// var bcrypt = require('bcrypt-nodejs');
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
@@ -20,16 +21,41 @@ var UserSchema = new mongoose.Schema({
 	}
 });
 
+// UserSchema.pre('save', function(next) {
+// 	var _this = this;
+// 	if(this.isNew) {
+// 		this.meta.createAt = this.meta.updateAt = Date.now();
+// 	} else {
+// 		this.meta.updateAt = Date.now();
+// 	}
+
+// 	bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+// 		if(err) {
+// 			console.log('err with salt');
+// 			return next(err);
+// 		}
+// 		bcrypt.hash(_this.password, salt, function(err, hash) {
+// 			if(err) {
+// 				console.log('err with hash');
+// 				return next(err);
+// 			}
+// 			_this.password = hash;
+// 			next();
+// 		});
+// 	});
+// });
+
 UserSchema.pre('save', function (next) {
   var user = this;
   if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now();
+	  var hash = bcrypt.hashSync(this.password);
+	  this.password = hash;
+	  next();
   } else {
     this.meta.updateAt = Date.now();
+    next();
   }
-  var hash = bcrypt.hashSync(this.password);
-  this.password = hash;
-  next();
 });
   
 UserSchema.methods = {

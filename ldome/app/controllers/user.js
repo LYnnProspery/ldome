@@ -22,7 +22,7 @@ exports.userSignUp =  function(req, res) {
 		username: req.body.username,
 		password: req.body.password
 	});
-	console.log(user.username);
+	//console.log(user.username);
 	User
 		.findOne({username: user.username}, function(err, result) {
 			if(err) {
@@ -41,6 +41,7 @@ exports.userSignUp =  function(req, res) {
 							user: user.username
 						});
 					}
+					req.session.user = user;
 					res.json({
 						state: 1,
 						user:  user.username
@@ -114,4 +115,37 @@ exports.adminGetUserList = function(req, res) {
 				userList: users
 			});
 		});
+};
+
+exports.getUserInfo = function(req, res) {
+	res.render('userInfo', {
+		title: '个人中心'
+	});
+};
+
+exports.uploadIcon = function(app) {
+	return function(req, res) {
+		var data = req.body.imgdata;
+		//console.log(data);
+		var id = req.session.user._id;
+		User
+			.fetchById(id, function(err, user) {
+				if(err) {
+					console.log(err);
+				}
+				//console.log(user);
+				user.icon = data;
+				user.save(function(err) {
+					if(err) {
+						console.log(err);
+					} else {
+						req.session.user.icon = data;
+						app.locals.user.icon = data;
+						res.json({
+							state: 1
+						});
+					}
+				});
+			});
+	}
 };

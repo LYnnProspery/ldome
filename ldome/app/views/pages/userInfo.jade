@@ -1,0 +1,108 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		title #{title}
+		include ../includes/head
+	body(style="background: #f4f5f7")
+		.container
+		.row(style="margin-bottom:70px;")
+			nav.navbar.navbar-inverse.navbar-fixed-top#navbar(style="background: #fff")
+				.container(style="position: relative")
+					a.brand(style="text-decoration: none;") YouDome
+					small &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gain your max
+					button.about 关于
+					if user
+						span.about-bg.pull-right
+						a.pull-right.nav-login-box#logout(href="/user/logout") 登出
+						span.pull-right#username(style="background-image: url(#{user.icon}); background-size: 50px 50px; background-position: center;")
+						.user-info
+							.user-bg-box
+								.user-info-bg
+							.user-info-box
+								.user-box-left 
+									.user-info-border
+									.user-info-icon(style="background-image: url(#{user.icon})" )
+								.user-box-right
+									.user-name #{user.username}
+									button.user-box-button.left-button#userSelf(user-id="#{user._id}") 个人中心
+									button.user-box-button.right-button#userBoxLogout 退出登录
+							.user-pointer
+					else
+						span.about-bg.pull-right
+						a.pull-right.nav-login-box#signupButton(data-toggle="modal" data-target="#signupModal") 注册
+						span.pull-right.line-divider
+						a.pull-right.nav-login-box#loginButton(data-toggle="modal" data-target="#loginModal") 登录
+		#signupModal.modal.fade
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(data-dismiss="modal" type="button") &times;
+						h2 注册
+					.modal-body
+						.form-group
+							label(for="signUpName") 用户名
+							input#signUpName.form-control(type="text" name="username")
+						.form-group
+							label(for="signUpName") 密码
+							input#signUpPassword.form-control(type="password" name="password")
+					.modal-footer
+						button.btn.btn-success#signUpBtn() 注册并登录
+						button.btn.btn-default(data-dismiss="modal" type="button") 关闭
+		#loginModal.modal.fade
+			.modal-dialog
+				.modal-content
+					.modal-header 
+						button.close(data-dismiss="modal" type="button") &times;
+						h2 登录
+					.modal-body
+						.form-group
+							label(for="loginName") 用户名
+							input#loginName.form-control(type="text" name="username")
+						.form-group
+							label(for="loginName") 密码
+							input#loginPassword.form-control(type="password" name="password")
+					.modal-footer
+						button.btn.btn-success#loginBtn(type="button") 登录
+						button.btn.btn-default(data-dismiss="modal" type="button") 关闭
+		#aboutModal.modal.fade
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(data-dismiss="modal" type="button") &times;
+						|关于
+					.modal-body
+						|youdome是lynn个人独自完成的视频小站，因为lynn没有资源来源，所以本着‘我们不制作视频，我们只是b站视频的搬运工’的想法，分享并使用了来源于bilibibli的视频资源。人新手疏，由于小站的前后端以及设计都是个人完成，难免存在Bug，欢迎大家建议指正。由于爬虫爬出来的视频资源是flash格式，暂不支持移动端的播放。大家可以直接联系lynn。
+						br
+						|lynn的邮箱: lynnprosper@163.com
+					.modal-footer
+						button.btn.btn-default(data-dismiss="modal" type="button") 关闭
+		.container.user-center-box
+			.wrap-info
+				.wrap-bg-blur
+				.wrap-info-box
+					.wrap-box-left
+						.wrap-info-border
+						.wrap-info-icon(style="background-image: url(#{user.icon})" )
+					.wrap-box-right
+						.wrap-name #{user.username}
+							span
+						p 这个家伙很懒。。。好像什么也没有留下。。。
+						input#hideInput(type="file" style="display: none")
+						button.user-box-button.left-button#setUserIcon 设置头像
+						button.user-box-button.right-button#backToIndex 返回主页
+			.wrap-bg
+		.container.user-center-info
+			.user-block.user-home-title 个人信息
+			.user-block.user-home-id 用户ID: #{user._id}
+			.user-block.user-home-name 用户名: #{user.username}
+			.user-block.user-home-time 注册时间: #{moment(user.meta.createAt).format("YYYY-MMM-DD HH:MM")}
+			.user-block.user-home-position 所在地: 中国
+			.user-box-bg
+		.footer
+			h2 YouDome
+			p Powered by Lynn
+			a.contact-link contact me
+				
+
+		script(src="/js/userAction.js")
