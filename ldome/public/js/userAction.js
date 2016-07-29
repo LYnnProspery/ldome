@@ -22,7 +22,7 @@ $(function() {
 				$('#signupModal').modal('hide');
 				location.reload();
 			} else if (res.state === 0) {
-				alert('the username' + res.user + ' is already in use');
+				alert('用户名：' + res.user + ' 已经存在');
 			}
 		});
 	});
@@ -46,7 +46,7 @@ $(function() {
 				$('#loginModal').modal('hide');
 				location.reload();
 			} else if(res.state === 0) {
-				alert('username or password existed error');
+				alert('用户名或密码错误');
 			}
 		});
 	});
